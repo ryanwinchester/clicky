@@ -36,13 +36,17 @@ defmodule ClickyWeb.ClickyLive do
       </div>
     </div>
     <div class="relative w-full">
-      <div class="fixed bottom-10 left-10 w-1/2 grid grid-cols-6">
+      <div class="fixed bottom-10 left-10 flex space-x-4 p-4 bg-gray-300 rounded-lg">
         <.link
           :for={
             color <- ~w[bg-red-500 bg-green-500 bg-yellow-500 bg-purple-500 bg-indigo-500 bg-blue-500]
           }
           patch={~p"/?color=#{color}"}
-          class={["aspect-square h-12", color]}
+          class={[
+            "aspect-square h-12 rounded-lg",
+            color,
+            if(color == @color, do: "border-4 border-slate-800")
+          ]}
         >
         </.link>
       </div>
