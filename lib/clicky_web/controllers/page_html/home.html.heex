@@ -1,0 +1,32 @@
+<.flash_group flash={@flash} />
+<div class="flex">
+  <div class="w-full grid grid-cols-[repeat(24,minmax(0,_1fr))] aspect-square">
+    <div :for={x <- 1..24} class="">
+      <div
+        :for={y <- 1..24}
+        class={[
+          "aspect-square",
+          if(rem(x + y, 2) == 0,
+            do: "bg-gray-600",
+            else: "bg-gray-700"
+          )
+        ]}
+        phx-click="colorize-block"
+        phx-value-x={x}
+        phx-value-y={y}
+      >
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fixed b-10 l-10 w-1/2 grid grid-cols-6">
+  <div
+    :for={
+      color <- ~w[bg-red-500 bg-green-500 bg-yellow-500 bg-purple-500 bg-indigo-500 bg-blue-500]
+    }
+    class={["aspect-square", color]}
+    phx-click="set-color"
+    phx-value-color={color}
+  >
+  </div>
+</div>
